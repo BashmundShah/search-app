@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    h1 {
+      @apply text-2xl font-bold font-mono;
+    }
+    h2 {
+      @apply text-xl font-bold font-mono;
+    }
+    h3 {
+        @apply text-lg font-bold font-mono;
+      }
+  }
