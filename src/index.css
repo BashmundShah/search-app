@@ -4,12 +4,24 @@
 
 @layer base {
     h1 {
-      @apply text-2xl font-bold font-mono;
-    }
-    h2 {
       @apply text-xl font-bold font-mono;
     }
+    h2 {
+      @apply text-lg font-bold font-mono;
+    }
     h3 {
-        @apply text-lg font-bold font-mono;
+        @apply text-base font-bold font-mono;
       }
+    p {
+      @apply text-sm font-mono;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+  
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .no-scrollbar {
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+    }
   }
