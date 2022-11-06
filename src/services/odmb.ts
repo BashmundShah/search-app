@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { Records } from "./types";
+import { Records, CompleteRecord } from "./types";
 
 const API_TOKEN = "956e41aa";
 // Define a service using a base URL and expected endpoints
@@ -8,12 +8,15 @@ export const omdbApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: "https://www.omdbapi.com/" }),
   keepUnusedDataFor: 0,
   endpoints: (builder) => ({
-    GetRecordsByNameQuery: builder.query<Records, string>({
+    GetRecordsBySearch: builder.query<Records, string>({
       query: (name) => `?s=${name}&apikey=${API_TOKEN}`,
+    }),
+    GetRecordById: builder.query<CompleteRecord, string>({
+      query: (id) => `?i=${id}&apikey=${API_TOKEN}`,
     }),
   }),
 });
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetRecordsByNameQueryQuery } = omdbApi;
+export const { useGetRecordsBySearchQuery, useGetRecordByIdQuery } = omdbApi;

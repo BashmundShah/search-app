@@ -13,7 +13,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
       <Provider store={store}>
         <Routes>
           <Route path="/" element={<App />} />
-          <Route path="/movie-details/:id" element={<Details />} />
+          <Route path="movie-details/:id" element={<Details />} />
         </Routes>
       </Provider>
     </React.StrictMode>
