@@ -4,6 +4,7 @@ import { ReactComponent as Search } from "./assets/search.svg";
 import { ReactComponent as VideoLibrary } from "./assets/video_library.svg";
 import { ReactComponent as ImagePlaceholder } from "./assets/image_not_supported.svg";
 import { Record } from "./services/types";
+import debounce from "debounce";
 
 const recordJSX = (record: Record, key: number) => (
   <div
@@ -28,9 +29,16 @@ function App() {
   const catchPhrase = "Unlimited Movies, TV Shows, and More.";
   const [searchString, setSearchString] = React.useState("");
   const { data, isLoading } = useGetRecordsByNameQueryQuery(searchString);
-
   const records = data?.Search;
   const isDataFetched = data?.Response === "True";
+  const handleSearch = debounce(
+    (e: React.ChangeEvent<HTMLInputElement>) => setSearchString(e.target.value),
+    500
+  );
+
+  React.useEffect(() => {
+    console.log("searchString:", searchString);
+  }, [searchString]);
   return (
     <div className="w-full h-screen flex flex-col items-center bg-gray-300">
       <nav className="py-2 text-white flex justify-center w-full bg-indigo-500">
@@ -43,7 +51,7 @@ function App() {
           <input
             className="bg-transparent w-full outline-none"
             placeholder="Type to search..."
-            onChange={(e) => setSearchString(e.target.value)}
+            onChange={handleSearch}
           />
           <Search className="w-5 h-5 stroke-current group-focus-within:text-indigo-700" />
         </div>
