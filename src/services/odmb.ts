@@ -6,7 +6,7 @@ const API_TOKEN = "956e41aa";
 export const omdbApi = createApi({
   reducerPath: "omdbApi",
   baseQuery: fetchBaseQuery({ baseUrl: "https://www.omdbapi.com/" }),
-  keepUnusedDataFor: 0,
+  keepUnusedDataFor: 30,
   endpoints: (builder) => ({
     GetRecordsBySearch: builder.query<Records, string>({
       query: (name) => `?s=${name}&apikey=${API_TOKEN}`,
